@@ -34,6 +34,12 @@ class CategoryController extends Controller
             'name'=> 'required|string|max:255|min:3'
         ]);
         Category::create($data);
+
+        session()->flash('swal',[
+            'icon' => 'success',
+            'title' => 'Se creo categoria',
+            'text' => 'Se a creado una nueva categoria'
+        ]);
         return redirect()->route("admin.categories.index");
     }
 

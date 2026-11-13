@@ -3,23 +3,32 @@
             <flux:breadcrumbs.item href="{{ route('dashboard') }}">
                 Dashboard
             </flux:breadcrumbs.item>
-            <flux:breadcrumbs.item href="{{ route('admin.categories.index') }}">
-                Categories
+            <flux:breadcrumbs.item href="{{ route('admin.posts.index') }}">
+                Post
             </flux:breadcrumbs.item>
             <flux:breadcrumbs.item >
-                Editar
+                Nuevo
             </flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
         <div class="card">
-            <form action="{{ route('admin.categories.update', $category)}}"  method="POST">
+            <form action="{{ route('admin.posts.store', $post)}}"  method="POST" class="space-y-4">
                 @csrf
-                @method('PUT')
                 <div>
-                    <flux:input label="Nombre" name="name" placeholder="Escribe el nombre de la categoria" value="{{ old('name',$category->name) }}" class="text-black"/>
-                    <div class="flex justify-end mb-4">
+                    <flux:input name="title" placeholder="Escribe el titulo del post" label="Titulo" value="{{ old('title') }}" oninput="string_to_slug(this.value, '#slug')"/>
+                    
+                    <flux:input id="slug" name="slug" placeholder="Escribe el slug del post" label="Slug" value="{{ old('slug') }}"/>
+
+                    <flux:select name="category_id" label="Categoria">
+                        @foreach ($categories as $category )
+                            <flux:select.option value="{{$category->id}}">{{ $category->name }}</flux:select.option>
+
+                        @endforeach
+                    </flux:select>
+
+                    <div class="flex justify-end">
                         <flux:button variant="primary" type="submit"> 
-                            Editar
+                            Crear
                         </flux:button>
                     </div>
 

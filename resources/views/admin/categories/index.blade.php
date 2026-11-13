@@ -41,8 +41,8 @@
                         <td class="px-6 py-4">
                             {{ $category->name }}
                         </td>
-                        <td class="px-6 py-4">
-                            
+                        <td class="px-6 py-4" width="10px">
+                            <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-blue text-xs">Editar</a>
                         </td>
                     </tr>  
                 @endforeach

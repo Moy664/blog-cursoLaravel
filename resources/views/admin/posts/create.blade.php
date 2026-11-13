@@ -15,9 +15,9 @@
             <form action="{{ route('admin.posts.store')}}"  method="POST" class="space-y-4">
                 @csrf
                 <div>
-                    <flux:input name="title" placeholder="Escribe el titulo del post" label="Titulo" value="{{ old('title') }}"/>
+                    <flux:input name="title" placeholder="Escribe el titulo del post" label="Titulo" value="{{ old('title') }}" oninput="string_to_slug(this.value, '#slug')"/>
                     
-                    <flux:input name="slug" placeholder="Escribe el slug del post" label="Slug" value="{{ old('slug') }}"/>
+                    <flux:input id="slug" name="slug" placeholder="Escribe el slug del post" label="Slug" value="{{ old('slug') }}"/>
 
                     <flux:select name="category_id" label="Categoria">
                         @foreach ($categories as $category )

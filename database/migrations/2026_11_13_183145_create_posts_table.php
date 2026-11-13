@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('excerpt');
-            $table->mediumText('content');
+            $table->text('excerpt')->nullable();
+            $table->mediumText('content')->nullable();
 
             $table->string('image_path')->nullable();
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
 
-            $table->boolean('is_published');
+            $table->boolean('is_published')->default(false);
 
             $table->timestamp('published_at')->nullable();
 

@@ -16,12 +16,11 @@
             @method('PUT')
             <div class = "relative mb-2">
                 
-                {{-- <img class="w-full aspect-video object-cover object-center" src="https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg" alt="No image"> --}}
-                <img class="w-full aspect-video object-cover object-center" src="{{ $post->image_path ? Storage::url($post->image_path) : "https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg"}}" alt="No image"> 
+                <img id="imgPreview" class="w-full aspect-video object-cover object-center" src="{{ $post->image_path ? Storage::url($post->image_path) : "https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg"}}" alt="No image"> 
     
                 <div class="absolute top-8 right-8">
                     <label  class="bg-white px-4 py-2 rounded-lg cursor-pointer" for="image">
-                        <input type="file" name="image" class="hidden" id="image" accept="image/*">
+                        <input type="file" name="image" class="hidden" id="image" accept="image/*" onchange="previewImage(event, '#imgPreview')">
                         Cambiar imagen
                     </input>
                     </label>

@@ -3,8 +3,8 @@
             <flux:breadcrumbs.item href="{{ route('dashboard') }}">
                 Dashboard
             </flux:breadcrumbs.item>
-            <flux:breadcrumbs.item href="{{ route('admin.posts.index') }}">
-                Post
+            <flux:breadcrumbs.item href="{{ route('admin.categories.index') }}">
+                Categories
             </flux:breadcrumbs.item>
             <flux:breadcrumbs.item >
                 Nuevo
@@ -12,12 +12,11 @@
         </flux:breadcrumbs>
 
         <div class="card">
-            <form action="{{ route('admin.posts.store', $post)}}"  method="POST" class="space-y-4">
+            <form action="{{ route('admin.categories.update', $category)}}"  method="POST" class="space-y-4">
                 @csrf
+                @method('PUT')
                 <div>
-                    <flux:input name="title" placeholder="Escribe el titulo del post" label="Titulo" value="{{ old('title') }}" oninput="string_to_slug(this.value, '#slug')"/>
-                    
-                    <flux:input id="slug" name="slug" placeholder="Escribe el slug del post" label="Slug" value="{{ old('slug') }}"/>
+                    <flux:input name="name" placeholder="Escribe el nombre de la categoria" label="Nombre" value="{{ old('name',$category->name) }}"/>
 
                     <flux:select name="category_id" label="Categoria">
                         @foreach ($categories as $category )

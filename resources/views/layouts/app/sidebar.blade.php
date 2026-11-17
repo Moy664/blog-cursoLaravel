@@ -19,6 +19,12 @@
                 'url' => route('admin.posts.index'),
                 'current' => request()->routeIs('admin.posts.*'),
             ],
+            [
+                'name'=>'Tags',
+                'icon'=> 'hashtag',
+                'url' => route('admin.tags.index'),
+                'current' => request()->routeIs('admin.tags.*'),
+            ],
         ],
     ]
 @endphp

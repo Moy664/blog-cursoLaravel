@@ -11,10 +11,24 @@
             </flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        <div class="card">
-            <form action="{{ route('admin.posts.update',$post)}}"  method="POST" class="space-y-4">
-                @csrf
-                @method('PUT')
+        <form action="{{ route('admin.posts.update',$post)}}"  method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class = "relative mb-2">
+                
+                {{-- <img class="w-full aspect-video object-cover object-center" src="https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg" alt="No image"> --}}
+                <img class="w-full aspect-video object-cover object-center" src="{{ $post->image_path ? Storage::url($post->image_path) : "https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg"}}" alt="No image"> 
+    
+                <div class="absolute top-8 right-8">
+                    <label  class="bg-white px-4 py-2 rounded-lg cursor-pointer" for="image">
+                        <input type="file" name="image" class="hidden" id="image" accept="image/*">
+                        Cambiar imagen
+                    </input>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card space-y-4">
                 <div>
                     <flux:input name="title" placeholder="Escribe el titulo del post" label="Titulo" value="{{ old('title', $post->title) }}" oninput="string_to_slug(this.value, '#slug')"/>
                     
@@ -54,7 +68,7 @@
                     </div>
 
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
         
 </x-layouts::app>

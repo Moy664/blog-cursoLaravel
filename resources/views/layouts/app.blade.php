@@ -9,5 +9,5 @@
         </script>
     @endif
 
-    @stack('js');
+    @stack('js')
 </x-layouts::app.sidebar>

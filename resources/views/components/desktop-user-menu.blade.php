@@ -1,10 +1,13 @@
+
+@auth
 <flux:dropdown position="bottom" align="start">
-    <flux:sidebar.profile
-        :name="auth()->user()->name"
-        :initials="auth()->user()->initials()"
-        icon:trailing="chevrons-up-down"
-        data-test="sidebar-menu-button"
-    />
+    
+        <flux:sidebar.profile
+            :name="auth()->user()->name"
+            :initials="auth()->user()->initials()"
+            icon:trailing="chevrons-up-down"
+            data-test="sidebar-menu-button"
+        />
 
     <flux:menu>
         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
@@ -37,3 +40,26 @@
         </flux:menu.radio.group>
     </flux:menu>
 </flux:dropdown>
+@else
+    <flux:dropdown position="bottom" align="start">
+        
+            
+        <flux:button
+            class="cursor pointer"
+            icon:trailing="user-circle"
+            data-test="sidebar-menu-button"
+        />
+
+        <flux:menu>
+            <flux:menu.radio.group>
+                <flux:menu.item :href="route('login')" icon="user" wire:navigate>
+                    {{ __('Sign in') }}
+                </flux:menu.item>
+                <flux:menu.item :href="route('register')" icon="user-plus" wire:navigate>
+                    {{ __('Sign up') }}
+                </flux:menu.item>
+                
+            </flux:menu.radio.group>
+        </flux:menu>
+    </flux:dropdown>
+@endauth

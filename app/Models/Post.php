@@ -4,8 +4,11 @@ namespace App\Models;
 
 use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Override;
 
 #[ObservedBy(PostObserver::class)]
 class Post extends Model
@@ -30,7 +33,19 @@ class Post extends Model
         'published_at'  => 'datetime',
     ];
 
+    protected function image(): Attribute {
+        return Attribute::make(
+            get: fn() => $this->image_path ? Storage::url($this->image_path) : "https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg"
+        );
+    } 
+
     public function tags(){
         return $this->belongsToMany(Tag::class);
+    }
+
+    //Route model binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

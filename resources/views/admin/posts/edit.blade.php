@@ -52,8 +52,8 @@
                     </flux:textarea> --}}
                     <div>
                         <p class="font-medium text-sm mb-1">Contenido</p>
-                        <div id="editor"></div>
-                        <textarea name="content" id="content" ></textarea>
+                        <div id="editor">{ !! old('content',$post->content) !! }</div>
+                        <textarea name="content" id="content" class="hidden">{{ old('content',$post->content) }} </textarea>
                     </div>
 
                     <div>
